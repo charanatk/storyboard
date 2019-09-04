@@ -1,5 +1,7 @@
 package com.app.storyboard.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,14 @@ public class StoryController {
 	@GetMapping(value = "/storys")
 	public ResponseEntity<Iterable<Story>> apps() {
 		return ResponseEntity.ok(stroryService.apps());
+	}
+	
+	@GetMapping(value = "/getstorys/{pageNo}/{pageSize}/{sortBy}")
+	public ResponseEntity<List<Story>> getAllStrory(@PathVariable Integer pageNo,
+			@PathVariable Integer pageSize, @PathVariable String sortBy) {
+		List<Story> list = stroryService.getAllStrory(pageNo, pageSize, sortBy);
+
+		return ResponseEntity.ok(list);
 	}
 
 }

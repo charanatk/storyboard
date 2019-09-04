@@ -1,11 +1,14 @@
 package com.app.storyboard.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.app.storyboard.bean.Story;
 import com.app.storyboard.repository.StoryRepository;
+
 
 @Component
 public class StoryDao {
@@ -26,5 +29,10 @@ public class StoryDao {
 	public Iterable<Story> apps() {
 
 		return applicationMetaRepository.findAll();
+	}
+
+	public Page<Story> getAllStrory(Pageable paging) {
+		// TODO Auto-generated method stub
+		return applicationMetaRepository.findAll(paging);
 	}
 }
