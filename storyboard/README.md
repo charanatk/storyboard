@@ -1,4 +1,3 @@
-# CFSpringBootPostgreSQL
-Cloud Foundry Application with Spring Boot and PostgreSQL
+# CFSpringBootMySQL
+Cloud Foundry Application with Spring Boot and MySQL
 
-Source Code for Traning: https://www.udemy.com/learn-to-develop-for-cloud-with-pivotal-cloud-foundry/
