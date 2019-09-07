@@ -16,10 +16,6 @@ import com.app.storyboard.repository.SubStoryRepository;
 
 @SpringBootApplication
 public class StoryBoardApplication implements  CommandLineRunner  {
-
-//	@Autowired
-//	private ApplicationMetaRepository applicationMetaRepository;
-//	
 	@Autowired
 	private StoryRepository storyRepository;
 	
@@ -31,15 +27,6 @@ public class StoryBoardApplication implements  CommandLineRunner  {
 	}
 
 	public void run(String... strings) throws Exception {
-//		ApplicationMeta applicationMeta = new ApplicationMeta();
-//		applicationMeta.setName("MyNewApp");
-//		applicationMeta.setDescription("This is a completely new application");
-//		applicationMetaRepository.save(applicationMeta);
-//
-//		ApplicationMeta applicationMeta1 = new ApplicationMeta();
-//		applicationMeta1.setName("CoolApp");
-//		applicationMeta1.setDescription("This is cool application!");
-//		applicationMetaRepository.save(applicationMeta1);
 		
 		Story strory = new Story();
 		strory.setAdvId("makeID");
@@ -57,7 +44,7 @@ public class StoryBoardApplication implements  CommandLineRunner  {
 		ss.setCreatedBy("Ajay");
 		ss.setDescription("ss of some thing this is make app fast..!!");
 		ss.setName("ss story");
-		ss.setStoryStatus("Active");
+		ss.setStoryStatus("OPEN");
 		ss.setCredatedDate(LocalDateTime.now());
 		ss.setModifiedDate(LocalDateTime.now());
 		SubStory ss1= new SubStory();
