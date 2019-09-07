@@ -21,6 +21,8 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.app.storyboard.util.Constants;
+
 /**
  * @author Charan kandula
  *
@@ -28,38 +30,36 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 @RestController
 public class CustomizedResponse extends ResponseEntityExceptionHandler {
-	private String INCORRECT_REQUEST = "INCORRECT_REQUEST";
-    private String BAD_REQUEST = "BAD_REQUEST";
-     
-    @ExceptionHandler(RecordNotFoundException.class)
-    public final ResponseEntity<ErrorResponse> handleUserNotFoundException
-                        (RecordNotFoundException ex, WebRequest request)
-    {
-       Map<String,String> hm = new HashMap<String,String>();
-        
-        hm.put("Date", LocalDateTime.now()+"");
-        hm.put("Error",ex.getLocalizedMessage());
-        hm.put("request", request.getDescription(false));
-        ErrorResponse error = new ErrorResponse(INCORRECT_REQUEST, hm);
-        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
-    }
-     
-    @ExceptionHandler(MissingHeaderInfoException.class)
-    public final ResponseEntity<ErrorResponse> handleInvalidTraceIdException
-                        (MissingHeaderInfoException ex, WebRequest request) {
-       
-        Map<String,String> hm = new HashMap<String,String>();
-        hm.put("Date", LocalDateTime.now()+"");
-        hm.put("Error",ex.getLocalizedMessage());
-        hm.put("Request", request.getDescription(false));
-        ErrorResponse error = new ErrorResponse(BAD_REQUEST, hm);
-        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
-    }
-    
-    @ExceptionHandler(NotFoundException.class)
-    public ModelAndView handleError404(HttpServletRequest request, Exception e)   {
-        Logger.getLogger(getClass().getName()).log(Level.SEVERE, "Request: " + request.getRequestURL() + " raised " + e);
-        return new ModelAndView("404");
-    }
-}
 
+	@ExceptionHandler(RecordNotFoundException.class)
+	public final ResponseEntity<ErrorResponse> handleUserNotFoundException(RecordNotFoundException ex,
+			WebRequest request) {
+		Map<String, String> hm = new HashMap<String, String>();
+
+		hm.put("Date", LocalDateTime.now() + "");
+		hm.put("Error", ex.getLocalizedMessage());
+		hm.put("request", request.getDescription(false));
+		ErrorResponse error = new ErrorResponse(Constants.INCORRECT_REQUEST, hm);
+		return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+	}
+
+	@ExceptionHandler(MissingHeaderInfoException.class)
+	public final ResponseEntity<ErrorResponse> handleInvalidTraceIdException(MissingHeaderInfoException ex,
+			WebRequest request) {
+
+		Map<String, String> hm = new HashMap<String, String>();
+		hm.put("Date", LocalDateTime.now() + "");
+		hm.put("Error", ex.getLocalizedMessage());
+		hm.put("Request", request.getDescription(false));
+		ErrorResponse error = new ErrorResponse(Constants.BAD_REQUEST, hm);
+		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+	}
+
+	@ExceptionHandler(NotFoundException.class)
+	public ModelAndView handleError404(HttpServletRequest request, Exception e) {
+		Logger.getLogger(getClass().getName()).log(Level.SEVERE,
+				"Request: " + request.getRequestURL() + " raised " + e);
+		return new ModelAndView("404");
+	}
+
+}

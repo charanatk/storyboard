@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -24,20 +25,15 @@ public class SubStory {
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String subId;
-	@Size(min=5)
+	@Size(min=5, message = "Please provide valid name")
 	private String name;
-	@Size(min=5)
+	@Size(min=5, message = "Please provide valid description")
 	private String description;
-	private String assignedBy;
+	private String assignedTo;
 	private String createdBy;
 	private LocalDateTime credatedDate;
-	private String tastStatus;
+	//@Pattern(regexp = "OPEN|TODO|INPROGRESS|DONE|VALIDATION|COMPLETED", message = "Not a valid subStoryStatus")
+	private String storyStatus;
 	private LocalDateTime modifiedDate;
-	/*
-	 * @ManyToOne
-	 * 
-	 * @JoinColumn(name="id")
-	 
-    	private Story story;
-	 */
+	
 }

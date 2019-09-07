@@ -1,5 +1,6 @@
 package com.app.storyboard.bean;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -10,11 +11,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.stereotype.Component;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,27 +25,32 @@ import lombok.Setter;
 @Component
 @Setter
 @Getter
-public class Story {
+public class Story implements Serializable {
 
+	/**
+	 * 
+	 */
+	
+	@Getter(AccessLevel.NONE)
+	@Setter(AccessLevel.NONE)
+	private static final long serialVersionUID = -6928170851370373986L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String id;
-	@Size(min=5)
+	@Size(min = 5, message = "Please provide valid name")
 	private String name;
-	@Size(min=5)
+	@Size(min = 5, message = "Please provide valid description")
 	private String description;
 	private String advId;
-	private String assignedBy;
+	private String assignedTo;
 	private String createdBy;
 	private LocalDateTime credatedDate;
-	private String tastStatus;
 	private LocalDateTime modifiedDate;
-	
-	
+	//@Pattern(regexp = "OPEN|TODO|INPROGRESS|DONE|VALIDATION|COMPLETED", message = "Not a valid storyStatus")
+	private String storyStatus;
+
 	@OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id", referencedColumnName = "id")
+	@JoinColumn(name = "id", referencedColumnName = "id")
 	private Set<SubStory> subStory;
-
-
 }

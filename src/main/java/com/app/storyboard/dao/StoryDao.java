@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.app.storyboard.bean.Story;
 import com.app.storyboard.repository.StoryRepository;
@@ -21,13 +20,11 @@ public class StoryDao {
 
 	}
 
-	public Story applicationCreate(@RequestBody Story name) {
-
+	public Story applicationCreate(Story name) {
 		return applicationMetaRepository.save(name);
 	}
 
 	public Iterable<Story> apps() {
-
 		return applicationMetaRepository.findAll();
 	}
 

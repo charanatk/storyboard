@@ -43,30 +43,30 @@ public class StoryBoardApplication implements  CommandLineRunner  {
 		
 		Story strory = new Story();
 		strory.setAdvId("makeID");
-		strory.setAssignedBy("charan");
+		strory.setAssignedTo("charan");
 		strory.setCreatedBy("ravi");
 		strory.setDescription("this is make app fast..!!");
 		strory.setName("app1 story");
-		strory.setTastStatus("Active");
+		strory.setStoryStatus("OPEN");
 		strory.setCredatedDate(LocalDateTime.now());
 		strory.setModifiedDate(LocalDateTime.now());
 		
 		Set<SubStory> subStory = new HashSet<SubStory>();
 		SubStory ss= new SubStory();
-		ss.setAssignedBy("Raju");
+		ss.setAssignedTo("Raju");
 		ss.setCreatedBy("Ajay");
 		ss.setDescription("ss of some thing this is make app fast..!!");
 		ss.setName("ss story");
-		ss.setTastStatus("Active");
+		ss.setStoryStatus("Active");
 		ss.setCredatedDate(LocalDateTime.now());
 		ss.setModifiedDate(LocalDateTime.now());
 		SubStory ss1= new SubStory();
 		
-		ss1.setAssignedBy("vikram");
+		ss1.setAssignedTo("vikram");
 		ss1.setCreatedBy("Aditya");
 		ss1.setDescription("ss of some thing this is make app 2nd..!!");
 		ss1.setName("ss 2nd story");
-		ss1.setTastStatus("Active");
+		ss1.setStoryStatus("OPEN");
 		ss1.setCredatedDate(LocalDateTime.now());
 		ss1.setModifiedDate(LocalDateTime.now());
 		
