@@ -34,7 +34,7 @@ public class CustomizedResponse extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(RecordNotFoundException.class)
 	public final ResponseEntity<ErrorResponse> handleUserNotFoundException(RecordNotFoundException ex,
 			WebRequest request) {
-		Map<String, String> hm = new HashMap<String, String>();
+		Map<String, String> hm = new HashMap<>();
 
 		hm.put("Date", LocalDateTime.now() + "");
 		hm.put("Error", ex.getLocalizedMessage());
@@ -47,7 +47,7 @@ public class CustomizedResponse extends ResponseEntityExceptionHandler {
 	public final ResponseEntity<ErrorResponse> handleInvalidTraceIdException(MissingHeaderInfoException ex,
 			WebRequest request) {
 
-		Map<String, String> hm = new HashMap<String, String>();
+		Map<String, String> hm = new HashMap<>();
 		hm.put("Date", LocalDateTime.now() + "");
 		hm.put("Error", ex.getLocalizedMessage());
 		hm.put("Request", request.getDescription(false));
@@ -57,8 +57,7 @@ public class CustomizedResponse extends ResponseEntityExceptionHandler {
 
 	@ExceptionHandler(NotFoundException.class)
 	public ModelAndView handleError404(HttpServletRequest request, Exception e) {
-		Logger.getLogger(getClass().getName()).log(Level.SEVERE,
-				"Request: " + request.getRequestURL() + " raised " + e);
+		Logger.getLogger(getClass().getName()).log(Level.SEVERE,"Request: " + request.getRequestURL() + " raised " + e.getMessage());
 		return new ModelAndView("404");
 	}
 

@@ -8,6 +8,7 @@ package com.app.storyboard.util;
  *
  */
 public class Constants {
-	public static String INCORRECT_REQUEST = "INCORRECT_REQUEST";
-	public static String BAD_REQUEST = "BAD_REQUEST";
+	private Constants() {}
+	public static final String INCORRECT_REQUEST = "INCORRECT_REQUEST";
+	public static final String BAD_REQUEST = "BAD_REQUEST";
 }

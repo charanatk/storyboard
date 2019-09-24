@@ -29,7 +29,6 @@ public class StoryDao {
 	}
 
 	public Page<Story> getAllStrory(Pageable paging) {
-		// TODO Auto-generated method stub
 		return applicationMetaRepository.findAll(paging);
 	}
 }

@@ -23,7 +23,6 @@ public class StoryController {
 
 	@GetMapping(value = "/get/{name}")
 	public ResponseEntity<Story> applicationData(@PathVariable String name) {
-		System.out.println(name);
 		return ResponseEntity.ok().body(stroryService.applicationData(name));
 	}
 

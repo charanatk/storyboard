@@ -47,7 +47,7 @@ public class Story implements Serializable {
 	private String createdBy;
 	private LocalDateTime credatedDate;
 	private LocalDateTime modifiedDate;
-	//@Pattern(regexp = "OPEN|TODO|INPROGRESS|DONE|VALIDATION|COMPLETED", message = "Not a valid storyStatus")
+	@Pattern(regexp = "OPEN|TODO|INPROGRESS|DONE|VALIDATION|COMPLETED", message = "Not a valid storyStatus")
 	private String storyStatus;
 
 	@OneToMany(cascade = CascadeType.ALL)

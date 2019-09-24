@@ -25,7 +25,6 @@ public class StoryServiceImpl implements StoryService {
 
 	@Override
 	public Story applicationData(String name) {
-		System.out.println(name);
 		if (!StringUtils.isEmpty(name.trim())) {
 			if (storyDao.applicationData(name) != null) {
 				return storyDao.applicationData(name);
@@ -55,7 +54,7 @@ public class StoryServiceImpl implements StoryService {
 		if (pagedResult.hasContent()) {
 			return pagedResult.getContent();
 		} else {
-			return new ArrayList<Story>();
+			return new ArrayList<>();
 		}
 	}
 }

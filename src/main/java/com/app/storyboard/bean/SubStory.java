@@ -1,5 +1,6 @@
 package com.app.storyboard.bean;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
@@ -19,8 +20,9 @@ import lombok.Setter;
 @Component
 @Setter
 @Getter
-public class SubStory {
-
+public class SubStory implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
@@ -32,7 +34,7 @@ public class SubStory {
 	private String assignedTo;
 	private String createdBy;
 	private LocalDateTime credatedDate;
-	//@Pattern(regexp = "OPEN|TODO|INPROGRESS|DONE|VALIDATION|COMPLETED", message = "Not a valid subStoryStatus")
+	@Pattern(regexp = "OPEN|TODO|INPROGRESS|DONE|VALIDATION|COMPLETED", message = "Not a valid StoryStatus")
 	private String storyStatus;
 	private LocalDateTime modifiedDate;
 	

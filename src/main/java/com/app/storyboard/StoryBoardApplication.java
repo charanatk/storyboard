@@ -38,7 +38,7 @@ public class StoryBoardApplication implements  CommandLineRunner  {
 		strory.setCredatedDate(LocalDateTime.now());
 		strory.setModifiedDate(LocalDateTime.now());
 		
-		Set<SubStory> subStory = new HashSet<SubStory>();
+		Set<SubStory> subStory = new HashSet<>();
 		SubStory ss= new SubStory();
 		ss.setAssignedTo("Raju");
 		ss.setCreatedBy("Ajay");
