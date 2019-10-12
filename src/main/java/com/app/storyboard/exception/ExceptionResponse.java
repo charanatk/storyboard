@@ -17,11 +17,11 @@ public class ExceptionResponse extends RuntimeException {
 	LocalDate date;
 	String message;
 	String description;
-
-	public ExceptionResponse(LocalDate now, String message2, String description2) {
+ 
+	public ExceptionResponse(LocalDate now, String msg, String desc) {
 		this.date = now;
-		this.message = message2;
-		this.description = description2;
+		this.message = msg;
+		this.description = desc;
 	}
 
 }

@@ -29,28 +29,28 @@ import com.app.storyboard.util.Constants;
  */
 @ControllerAdvice
 @RestController
-public class CustomizedResponse extends ResponseEntityExceptionHandler {
+public class StoryBoardExceptionHandler extends ResponseEntityExceptionHandler {
 
 	@ExceptionHandler(RecordNotFoundException.class)
 	public final ResponseEntity<ErrorResponse> handleUserNotFoundException(RecordNotFoundException ex,
 			WebRequest request) {
 		Map<String, String> hm = new HashMap<>();
 
-		hm.put("Date", LocalDateTime.now() + "");
-		hm.put("Error", ex.getLocalizedMessage());
-		hm.put("request", request.getDescription(false));
+		hm.put(Constants.DATE, LocalDateTime.now() + "");
+		hm.put(Constants.ERROR, ex.getLocalizedMessage());
+		hm.put(Constants.REQUEST, request.getDescription(false));
 		ErrorResponse error = new ErrorResponse(Constants.INCORRECT_REQUEST, hm);
 		return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
 	}
 
 	@ExceptionHandler(MissingHeaderInfoException.class)
-	public final ResponseEntity<ErrorResponse> handleInvalidTraceIdException(MissingHeaderInfoException ex,
+	public final ResponseEntity<ErrorResponse> handleInvalidTraceIdException(MissingHeaderInfoException mhie,
 			WebRequest request) {
 
 		Map<String, String> hm = new HashMap<>();
-		hm.put("Date", LocalDateTime.now() + "");
-		hm.put("Error", ex.getLocalizedMessage());
-		hm.put("Request", request.getDescription(false));
+		hm.put(Constants.DATE, LocalDateTime.now() + "");
+		hm.put(Constants.ERROR, mhie.getLocalizedMessage());
+		hm.put(Constants.REQUEST, request.getDescription(false));
 		ErrorResponse error = new ErrorResponse(Constants.BAD_REQUEST, hm);
 		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
 	}
@@ -61,4 +61,14 @@ public class CustomizedResponse extends ResponseEntityExceptionHandler {
 		return new ModelAndView("404");
 	}
 
+	@ExceptionHandler(Exception.class)
+	public final ResponseEntity<ErrorResponse> handleBaseException(Exception ex,WebRequest request) {
+		Logger.getLogger(getClass().getName()).log(Level.SEVERE,"Request: " + request.getContextPath() + " raised " + ex.getMessage());
+		Map<String, String> hm = new HashMap<>();
+		hm.put(Constants.DATE, LocalDateTime.now() + "");
+		hm.put(Constants.ERROR, ex.getLocalizedMessage());
+		hm.put(Constants.REQUEST, request.getDescription(false));
+		ErrorResponse error = new ErrorResponse(Constants.INTERNAL_SERVER_ERROR, hm);
+		return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 }
