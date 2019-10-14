@@ -3,9 +3,11 @@ package com.app.storyboard.controller;
 import java.util.List;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Size;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,13 +18,14 @@ import com.app.storyboard.bean.Story;
 import com.app.storyboard.service.StoryService;
 
 @RestController
+@Validated
 public class StoryController {
 
 	@Autowired
 	private StoryService stroryService;
 
 	@GetMapping(value = "/get/{name}")
-	public ResponseEntity<Story> applicationData(@PathVariable String name) {
+	public ResponseEntity<Story> applicationData(@PathVariable @Size(min = 4) String name) {
 		return ResponseEntity.ok().body(stroryService.applicationData(name));
 	}
 

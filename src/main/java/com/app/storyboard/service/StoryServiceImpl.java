@@ -26,8 +26,9 @@ public class StoryServiceImpl implements StoryService {
 	@Override
 	public Story applicationData(String name) {
 		if (!StringUtils.isEmpty(name.trim())) {
-			if (storyDao.applicationData(name) != null) {
-				return storyDao.applicationData(name);
+			Story story = storyDao.applicationData(name);
+			if ( story!= null) {
+				return story;
 			} else {
 				throw new RecordNotFoundException("Data not avaliable ");
 			}

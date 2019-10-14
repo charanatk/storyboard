@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -32,10 +34,12 @@ public class SubStory implements Serializable {
 	@Size(min=5, message = "Please provide valid description")
 	private String description;
 	private String assignedTo;
+	@NotNull(message = "createdBy is requried")
+	@NotBlank(message = "createdBy is requried")
 	private String createdBy;
-	private LocalDateTime credatedDate;
 	@Pattern(regexp = "OPEN|TODO|INPROGRESS|DONE|VALIDATION|COMPLETED", message = "Not a valid StoryStatus")
 	private String storyStatus;
+	private LocalDateTime credatedDate;
 	private LocalDateTime modifiedDate;
 	
 }

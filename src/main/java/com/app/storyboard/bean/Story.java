@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -42,8 +44,12 @@ public class Story implements Serializable {
 	private String name;
 	@Size(min = 5, message = "Please provide valid description")
 	private String description;
+	@NotNull(message = "advId is requried")
+	@NotBlank(message = "advId is requried")
 	private String advId;
 	private String assignedTo;
+	@NotNull(message = "createdBy is requried")
+	@NotBlank(message = "createdBy is requried")
 	private String createdBy;
 	private LocalDateTime credatedDate;
 	private LocalDateTime modifiedDate;
