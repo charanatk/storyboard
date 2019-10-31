@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import com.app.storyboard.bean.Story;
+import com.app.storyboard.bean.StoryDTO;
 import com.app.storyboard.dao.StoryDao;
 import com.app.storyboard.exception.MissingHeaderInfoException;
 import com.app.storyboard.exception.RecordNotFoundException;
@@ -24,11 +25,13 @@ public class StoryServiceImpl implements StoryService {
 	StoryDao storyDao;
 
 	@Override
-	public Story applicationData(String name) {
-		if (!StringUtils.isEmpty(name.trim())) {
-			Story story = storyDao.applicationData(name);
+	public StoryDTO findByStory(StoryDTO storyDTO) {
+		Story story = storyDTO.getStory();
+		if (!StringUtils.isEmpty(story.getName().trim())) {
+			 story = storyDao.applicationData(story.getName());
+			storyDTO.setStory(story);
 			if ( story!= null) {
-				return story;
+				return storyDTO;
 			} else {
 				throw new RecordNotFoundException("Data not avaliable ");
 			}
@@ -38,8 +41,8 @@ public class StoryServiceImpl implements StoryService {
 	}
 
 	@Override
-	public Story applicationCreate(Story story) {
-		return storyDao.applicationCreate(story);
+	public Story storyCreate(Story story) {
+		return storyDao.storyCreate(story);
 	}
 
 	@Override

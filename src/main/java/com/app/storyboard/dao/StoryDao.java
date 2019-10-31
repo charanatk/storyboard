@@ -13,22 +13,22 @@ import com.app.storyboard.repository.StoryRepository;
 public class StoryDao {
 
 	@Autowired
-	StoryRepository applicationMetaRepository;
+	StoryRepository storyRep;
 
 	public Story applicationData(String name) {
-		return applicationMetaRepository.findByName(name);
+		return storyRep.findByName(name);
 
 	}
 
-	public Story applicationCreate(Story name) {
-		return applicationMetaRepository.save(name);
+	public Story storyCreate(Story story) {
+		return storyRep.save(story);
 	}
 
 	public Iterable<Story> apps() {
-		return applicationMetaRepository.findAll();
+		return storyRep.findAll();
 	}
 
 	public Page<Story> getAllStrory(Pageable paging) {
-		return applicationMetaRepository.findAll(paging);
+		return storyRep.findAll(paging);
 	}
 }
