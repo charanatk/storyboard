@@ -39,20 +39,23 @@ public class StoryController {
 
 	@ApiOperation(value = "Search a story with an Name")
 	@GetMapping(value = "story/get/{name}")
-	public ResponseEntity<StoryDTO> findStory(@PathVariable @Size(min = 4) String name) {
+	public ResponseEntity<Story> findStory(@PathVariable @Size(min = 4) String name) {
 
 		StoryDTO storyDTO = getStory();
 		Story story = new Story();
 		story.setName(name);
 		storyDTO.setStory(story);
 
-		return ResponseEntity.ok().body(storyService.findByStory(storyDTO));
+		return ResponseEntity.ok().body(storyService.findByStory(storyDTO).getStory());
 	}
 
 	@ApiOperation(value = "Add a story")
 	@PostMapping(value = "story/add")
-	public ResponseEntity<Story> applicationCreate(@Valid @RequestBody Story story) {
-		return ResponseEntity.ok().body(storyService.storyCreate(story));
+	public ResponseEntity<Story> addStory(@Valid @RequestBody Story story) {
+		StoryDTO storyDTO = getStory();
+		storyDTO.setStory(story);
+
+		return ResponseEntity.ok().body(storyService.storyCreate(storyDTO).getStory());
 	}
 
 	@ApiOperation(value = "View a list of storys", response = Iterable.class)

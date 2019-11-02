@@ -14,7 +14,7 @@ public interface StoryService {
 
 	public StoryDTO findByStory(StoryDTO storyDTO);
 
-	public Story storyCreate(Story story);
+	public StoryDTO storyCreate(StoryDTO storyDTO);
 
 	public Iterable<Story> apps();
 

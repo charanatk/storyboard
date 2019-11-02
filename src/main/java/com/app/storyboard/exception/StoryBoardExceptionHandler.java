@@ -45,8 +45,8 @@ public class StoryBoardExceptionHandler extends ExceptionHandlerExceptionResolve
 		return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
 	}
 
-	@ExceptionHandler(MissingHeaderInfoException.class)
-	public final ResponseEntity<ErrorResponse> handleInvalidTraceIdException(MissingHeaderInfoException mhie,
+	@ExceptionHandler(MissingInputInfoException.class)
+	public final ResponseEntity<ErrorResponse> handleInvalidTraceIdException(MissingInputInfoException mhie,
 			WebRequest request) {
 
 		Map<String, String> hm = new HashMap<>();

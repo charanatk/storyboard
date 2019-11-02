@@ -17,10 +17,10 @@ import lombok.Setter;
 @Setter
 @Getter
 @ResponseStatus(HttpStatus.BAD_REQUEST)
-public class MissingHeaderInfoException extends RuntimeException {
+public class MissingInputInfoException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 
-	public MissingHeaderInfoException(String message) {
+	public MissingInputInfoException(String message) {
 		super(message);
 	}
 }

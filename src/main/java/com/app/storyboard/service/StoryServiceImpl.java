@@ -15,7 +15,7 @@ import org.springframework.util.StringUtils;
 import com.app.storyboard.bean.Story;
 import com.app.storyboard.bean.StoryDTO;
 import com.app.storyboard.dao.StoryDao;
-import com.app.storyboard.exception.MissingHeaderInfoException;
+import com.app.storyboard.exception.MissingInputInfoException;
 import com.app.storyboard.exception.RecordNotFoundException;
 
 @Service
@@ -28,21 +28,27 @@ public class StoryServiceImpl implements StoryService {
 	public StoryDTO findByStory(StoryDTO storyDTO) {
 		Story story = storyDTO.getStory();
 		if (!StringUtils.isEmpty(story.getName().trim())) {
-			 story = storyDao.applicationData(story.getName());
+			story = storyDao.applicationData(story.getName());
 			storyDTO.setStory(story);
-			if ( story!= null) {
+			if (story != null) {
 				return storyDTO;
 			} else {
 				throw new RecordNotFoundException("Data not avaliable ");
 			}
 		} else {
-			throw new MissingHeaderInfoException("Input Data Not valid..!");
+			throw new MissingInputInfoException("Input Data Not valid..!");
 		}
 	}
 
 	@Override
-	public Story storyCreate(Story story) {
-		return storyDao.storyCreate(story);
+	public StoryDTO storyCreate(StoryDTO storyDTO) {
+		if(null != storyDTO.getStory()) {
+			Story story = storyDao.storyCreate(storyDTO.getStory());
+			storyDTO.setStory(story);
+		}else {
+			throw new MissingInputInfoException("Input Data Not valid..!"); 
+		}
+		return storyDTO;
 	}
 
 	@Override
