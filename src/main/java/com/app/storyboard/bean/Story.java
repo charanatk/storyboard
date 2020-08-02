@@ -67,4 +67,6 @@ public class Story implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id", referencedColumnName = "id")
 	private Set<SubStory> subStory;
+	
+	
 }

@@ -23,10 +23,12 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @Validated
 @Api(value = "storyboard", description = "User stories access in Story Board")
+@Slf4j
 public class StoryController {
 
 	@Autowired
@@ -40,12 +42,12 @@ public class StoryController {
 	@ApiOperation(value = "Search a story with an Name")
 	@GetMapping(value = "story/get/{name}")
 	public ResponseEntity<Story> findStory(@PathVariable @Size(min = 4) String name) {
-
+		log.info("Start get story");
 		StoryDTO storyDTO = getStory();
 		Story story = new Story();
 		story.setName(name);
 		storyDTO.setStory(story);
-
+		log.info("End get story");
 		return ResponseEntity.ok().body(storyService.findByStory(storyDTO).getStory());
 	}
 
